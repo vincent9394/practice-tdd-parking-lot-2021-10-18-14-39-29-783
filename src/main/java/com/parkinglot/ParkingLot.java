@@ -21,9 +21,15 @@ public class ParkingLot {
         } else{
             throw new ParkingLotIsFullException();
         }
+    }
 
-
-
+    public Car fetchCar (Ticket ticket){
+        Car car = ticketCarMap.get(ticket);
+        ticketCarMap.remove(ticket);
+        return car;
     }
 
 }
+
+
+
