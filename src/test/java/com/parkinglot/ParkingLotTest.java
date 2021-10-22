@@ -9,11 +9,30 @@ class ParkingLotTest {
     void should_return_ticket_when_execute_parkCar_given_car_and_ParkingLot() {
 //    given
             Car car = new Car();
-            ParkingLot parkinglot = new ParkingLot();
+            ParkingLot parkingLot = new ParkingLot(10);
 
 //    when
-            Ticket actualTicket =  parkinglot.parkCar(car);
+            Ticket actualTicket =  parkingLot.parkCar(car);
 //    then
             assertNotNull(actualTicket);
         }
+
+        @Test
+    void should_return_null_when_execute_parkCar_given_full_ParkingLot(){
+            //given
+            ParkingLot parkingLot = new ParkingLot(1);
+            parkingLot.parkCar(new Car());
+            Car car =new Car();
+            //when
+            Ticket actualTicket =  parkingLot.parkCar(car);
+
+            //then
+            assertNull(actualTicket);
+
+        }
 }
+
+
+
+
+
