@@ -18,18 +18,24 @@ class ParkingLotTest {
         }
 
         @Test
-    void should_return_null_when_execute_parkCar_given_full_ParkingLot(){
+    void should_return_error_message_when_execute_parkCar_given_full_ParkingLot(){
             //given
             ParkingLot parkingLot = new ParkingLot(1);
             parkingLot.parkCar(new Car());
             Car car =new Car();
             //when
-            Ticket actualTicket =  parkingLot.parkCar(car);
+            ParkingLotIsFullException parkingLotIsFullException = assertThrows(ParkingLotIsFullException.class,()-> parkingLot.parkCar(car));
+                    //MyException.class,
+            //           () -> myObject.doThing(),
+            //           "Expected doThing() to throw, but it didn't"
+
 
             //then
-            assertNull(actualTicket);
+            assertEquals("No available position",parkingLotIsFullException.getMessage());
 
         }
+
+
 }
 
 
