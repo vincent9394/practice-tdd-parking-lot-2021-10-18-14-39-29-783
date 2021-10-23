@@ -13,14 +13,14 @@ public class ParkingLot {
     }
 
     public Ticket parkCar (Car car){
-        if ((capacity -ticketCarMap.size())>0) {
+        if (ticketCarMap.containsValue(car) || car ==null){
+            return null;
+        }else if ((capacity -ticketCarMap.size())>0) {
             Ticket ticket = new Ticket();
             ticketCarMap.put(ticket, car);
             ticketCarMap.get(ticket);
             return ticket;
-        } else if (ticketCarMap.containsValue(car)){
-            return null;
-        }else
+        } else
         {
             throw new ParkingLotIsFullException();
         }
@@ -31,8 +31,6 @@ public class ParkingLot {
             Car car = ticketCarMap.get(ticket);
             ticketCarMap.remove(ticket);
             return car;
-        } else if (ticket == null){
-            return null;
         } else {
             throw new UnrecognizedTicketException();
         }
