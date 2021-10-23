@@ -18,6 +18,78 @@ class ParkingLotTest {
         assertNotNull(actualTicket);
     }
 
+//    @Test
+//    void should_return_null_when_execute_parkCar_when_givem_full_parkingLot(){
+//        //given
+//        ParkingLot parkingLot = new ParkingLot(1);
+//        parkingLot.parkCar(new Car());
+//        Car car = new Car();
+//
+//        //when
+//        Ticket ticket = parkingLot.parkCar(car);
+//
+//        //then
+//        assertNull(ticket);
+//    }
+
+    @Test
+    void should_return_car_when_execute_fetch_car_given_Ticket() {
+         //given
+
+        ParkingLot parkingLot = new ParkingLot(10);
+        Ticket ticket = parkingLot.parkCar(new Car());
+
+        //when
+        Car actualCar = parkingLot.fetchCar(ticket);
+
+        //then
+        assertNotNull(actualCar);
+    }
+    @Test
+    void should_return_null_when_execute_fetch_car_given_null_ticket(){
+        //given
+        ParkingLot parkingLot = new ParkingLot(10);
+        Ticket ticket = new Ticket();
+
+        //when
+        Car actualCar = parkingLot.fetchCar(ticket);
+
+        //then
+        assertNull(actualCar);
+    }
+    @Test
+    void should_return_null_when_execute_fetch_car_given_used_ticket(){
+        //given
+        ParkingLot parkingLot = new ParkingLot(10);
+        Ticket ticket = parkingLot.parkCar(new Car());
+        parkingLot.fetchCar(ticket);
+
+        //when
+        Car actualCar = parkingLot.fetchCar(ticket);
+
+        //then
+        assertNull(actualCar);
+    }
+
+
+    @Test
+    void asd(){
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     @Test
     void should_return_error_message_when_execute_parkCar_given_full_parkingLot() {
         //given
@@ -34,32 +106,6 @@ class ParkingLotTest {
         //then
         assertEquals("No available position", parkingLotIsFullException.getMessage());
 
-    }
-
-    @Test
-    void should_return_car_when_execute_fetch_car_given_Ticket() {
-         //given
-
-        ParkingLot parkingLot = new ParkingLot(10);
-        Ticket ticket = parkingLot.parkCar(new Car());
-
-        //when
-        Car actualCar = parkingLot.fetchCar(ticket);
-
-        //then
-        assertNotNull(actualCar);
-    }
-    @Test
-    void should_return_error_message_when_execute_fetch_car_given_null_ticket(){
-        //given
-        ParkingLot parkingLot = new ParkingLot(10);
-        Ticket ticket = new Ticket();
-
-        //when
-        Car actualCar = parkingLot.fetchCar(ticket);
-
-        //then
-        assertNull(actualCar);
     }
 }
 
