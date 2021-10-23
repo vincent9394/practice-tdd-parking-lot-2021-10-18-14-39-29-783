@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ParkingLotTest {
     //Story 1
-    @Test
+    @Test //#1
     void should_return_ticket_when_execute_parkCar_given_car_and_parkingLot() {
 //    given
         Car car = new Car();
@@ -18,7 +18,7 @@ class ParkingLotTest {
         assertNotNull(actualTicket);
     }
 
-    @Test
+    @Test //#2
     void should_return_null_when_execute_parkCar_given_null_car() {
         //given
         Car car = null;
@@ -31,7 +31,7 @@ class ParkingLotTest {
         assertNull(actualTicket);
     }
 
-    @Test
+    @Test //#3
     void should_return_null_when_execute_partCar_when_given_parked_car(){
 
         //given
@@ -45,7 +45,7 @@ class ParkingLotTest {
         //then
         assertNull(ticket);
     }
-//    @Test
+//    @Test //#4
 //    void should_return_null_when_execute_parkCar_when_givem_full_parkingLot(){
 //        //given
 //        ParkingLot parkingLot = new ParkingLot(1);
@@ -59,7 +59,7 @@ class ParkingLotTest {
 //        assertNull(ticket);
 //    }
 
-    @Test
+    @Test //#5
     void should_return_car_when_execute_fetch_car_given_Ticket() {
         //given
 
@@ -73,7 +73,7 @@ class ParkingLotTest {
         assertNotNull(actualCar);
     }
 
-    @Test
+    @Test //#6
     void should_return_null_when_execute_fetch_car_given_null_ticket() {
         //given
         ParkingLot parkingLot = new ParkingLot(10);
@@ -86,7 +86,7 @@ class ParkingLotTest {
         assertNull(actualCar);
     }
 
-    @Test
+    @Test //#7
     void should_return_null_when_execute_fetch_car_given_used_ticket() {
         //given
         ParkingLot parkingLot = new ParkingLot(10);
@@ -101,7 +101,7 @@ class ParkingLotTest {
     }
 
 
-    @Test
+    @Test //#8
     void should_return_null_when_execute_fetch_car_given_wrong_ticket() {
         //given
         ParkingLot parkingLot = new ParkingLot(10);
@@ -116,8 +116,8 @@ class ParkingLotTest {
         //then
         assertNotEquals(car1, actualCar1);
     }
-
-
+//------------------------------------------------------------------------------------------
+    //story 2 # 1
     @Test
     void should_return_error_message_when_execute_parkCar_given_full_parkingLot() {
         //given
@@ -125,7 +125,8 @@ class ParkingLotTest {
         parkingLot.parkCar(new Car());
         Car car = new Car();
         //when
-        ParkingLotIsFullException parkingLotIsFullException = assertThrows(ParkingLotIsFullException.class, () -> parkingLot.parkCar(car));
+        ParkingLotIsFullException parkingLotIsFullException = assertThrows(
+                ParkingLotIsFullException.class, () -> parkingLot.parkCar(car));
         //MyException.class,
         //           () -> myObject.doThing(),
         //           "Expected doThing() to throw, but it didn't"
@@ -134,6 +135,22 @@ class ParkingLotTest {
         //then
         assertEquals("No available position", parkingLotIsFullException.getMessage());
 
+    }
+
+    @Test //#2
+    void should_return_error_message_when_execute_parkCar_given_used_ticket(){
+        //given
+        ParkingLot parkingLot = new ParkingLot(10);
+        Ticket ticket = parkingLot.parkCar(new Car());
+        parkingLot.fetchCar(ticket);
+
+        //when
+        UnrecognizedTicketException unrecognizedTicketException =assertThrows(
+                UnrecognizedTicketException.class, ()-> parkingLot.fetchCar(ticket)
+        );
+
+        //then
+        assertEquals("Unrecognized parking ticket",unrecognizedTicketException.getMessage());
     }
 }
 

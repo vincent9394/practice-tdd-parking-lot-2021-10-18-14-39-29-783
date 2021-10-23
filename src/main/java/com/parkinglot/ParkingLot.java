@@ -27,13 +27,16 @@ public class ParkingLot {
     }
 
     public Car fetchCar (Ticket ticket){
-        if (ticket == null){
+        if (ticketCarMap.containsKey(ticket)){
+            Car car = ticketCarMap.get(ticket);
+            ticketCarMap.remove(ticket);
+            return car;
+        } else if (ticket == null){
             return null;
+        } else {
+            throw new UnrecognizedTicketException();
         }
-        Car car = ticketCarMap.get(ticket);
 
-        ticketCarMap.remove(ticket);
-        return car;
     }
 
 }
