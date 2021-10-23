@@ -17,7 +17,18 @@ class ParkingLotTest {
 //    then
         assertNotNull(actualTicket);
     }
+@Test
+void should_return_null_when_execute_parkCar_given_null_car(){
+        //given
+    Car car = null;
+    ParkingLot parkingLot =new ParkingLot(1);
 
+    //when
+        Ticket actualTicket = parkingLot.parkCar(null);
+
+    //then
+    assertNull(actualTicket);
+}
 //    @Test
 //    void should_return_null_when_execute_parkCar_when_givem_full_parkingLot(){
 //        //given
@@ -34,7 +45,7 @@ class ParkingLotTest {
 
     @Test
     void should_return_car_when_execute_fetch_car_given_Ticket() {
-         //given
+        //given
 
         ParkingLot parkingLot = new ParkingLot(10);
         Ticket ticket = parkingLot.parkCar(new Car());
@@ -45,8 +56,9 @@ class ParkingLotTest {
         //then
         assertNotNull(actualCar);
     }
+
     @Test
-    void should_return_null_when_execute_fetch_car_given_null_ticket(){
+    void should_return_null_when_execute_fetch_car_given_null_ticket() {
         //given
         ParkingLot parkingLot = new ParkingLot(10);
         Ticket ticket = new Ticket();
@@ -57,8 +69,9 @@ class ParkingLotTest {
         //then
         assertNull(actualCar);
     }
+
     @Test
-    void should_return_null_when_execute_fetch_car_given_used_ticket(){
+    void should_return_null_when_execute_fetch_car_given_used_ticket() {
         //given
         ParkingLot parkingLot = new ParkingLot(10);
         Ticket ticket = parkingLot.parkCar(new Car());
@@ -73,21 +86,20 @@ class ParkingLotTest {
 
 
     @Test
-    void asd(){
+    void should_return_null_when_execute_fetch_car_given_wrong_ticket() {
+        //given
+        ParkingLot parkingLot = new ParkingLot(10);
+        Car car1 = new Car();
+        Car car2 = new Car();
+        Ticket ticket1 = parkingLot.parkCar(car1);
+        Ticket ticket2 = parkingLot.parkCar(car2);
 
+        //when
+        Car actualCar1 = parkingLot.fetchCar(ticket2);
+
+        //then
+        assertNotEquals(car1,actualCar1);
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     @Test
