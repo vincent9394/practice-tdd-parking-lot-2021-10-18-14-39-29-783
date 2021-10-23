@@ -17,18 +17,34 @@ class ParkingLotTest {
 //    then
         assertNotNull(actualTicket);
     }
-@Test
-void should_return_null_when_execute_parkCar_given_null_car(){
-        //given
-    Car car = null;
-    ParkingLot parkingLot =new ParkingLot(1);
 
-    //when
+    @Test
+    void should_return_null_when_execute_parkCar_given_null_car() {
+        //given
+        Car car = null;
+        ParkingLot parkingLot = new ParkingLot(1);
+
+        //when
         Ticket actualTicket = parkingLot.parkCar(null);
 
-    //then
-    assertNull(actualTicket);
-}
+        //then
+        assertNull(actualTicket);
+    }
+
+    @Test
+    void should_return_null_when_execute_partCar_when_given_parked_car(){
+
+        //given
+        ParkingLot parkingLot = new ParkingLot(1);
+        Car car = new Car();
+        parkingLot.parkCar(car);
+
+        //when
+        Ticket ticket = parkingLot.parkCar(car);
+
+        //then
+        assertNull(ticket);
+    }
 //    @Test
 //    void should_return_null_when_execute_parkCar_when_givem_full_parkingLot(){
 //        //given
@@ -98,7 +114,7 @@ void should_return_null_when_execute_parkCar_given_null_car(){
         Car actualCar1 = parkingLot.fetchCar(ticket2);
 
         //then
-        assertNotEquals(car1,actualCar1);
+        assertNotEquals(car1, actualCar1);
     }
 
 

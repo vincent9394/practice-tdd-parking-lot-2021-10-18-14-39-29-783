@@ -18,7 +18,10 @@ public class ParkingLot {
             ticketCarMap.put(ticket, car);
             ticketCarMap.get(ticket);
             return ticket;
-        } else{
+        } else if (ticketCarMap.containsValue(car)){
+            return null;
+        }else
+        {
             throw new ParkingLotIsFullException();
         }
     }
