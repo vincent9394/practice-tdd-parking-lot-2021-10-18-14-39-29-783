@@ -73,18 +73,18 @@ class ParkingLotTest {
         assertNotNull(actualCar);
     }
 
-    @Test //#6
-    void should_return_null_when_execute_fetch_car_given_null_ticket() {
-        //given
-        ParkingLot parkingLot = new ParkingLot(10);
-        Ticket ticket = null;
-
-        //when
-        Car actualCar = parkingLot.fetchCar(ticket);
-
-        //then
-        assertNull(actualCar);
-    }
+//    @Test //#6
+//    void should_return_null_when_execute_fetch_car_given_null_ticket() {
+//        //given
+//        ParkingLot parkingLot = new ParkingLot(10);
+//        Ticket ticket = null;
+//
+//        //when
+//        Car actualCar = parkingLot.fetchCar(ticket);
+//
+//        //then
+//        assertNull(actualCar);
+//    }
 
 //    @Test //#7
 //    void should_return_null_when_execute_fetch_car_given_used_ticket() {
@@ -187,6 +187,19 @@ class ParkingLotTest {
 
     }
 
+//------------------------------------------------------------------------------------------
+    //story 3
+    @Test
+    void should_return_ticket_when_execute_parkCar_given_car_and_parkingLot_and_standard_parking_boy(){
+        //given
+        Car car = new Car();
+        StandardParkingBoy parkingBoy = new StandardParkingBoy(new ParkingLot(10));
+
+//    when
+        Ticket actualTicket = parkingBoy.parkCar(car);
+//    then
+        assertNotNull(actualTicket);
+    }
 
 }
 
