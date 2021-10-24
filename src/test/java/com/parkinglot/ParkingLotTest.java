@@ -201,7 +201,7 @@ class ParkingLotTest {
         assertNotNull(actualTicket);
     }
 
-    @Test
+    @Test //#2
     void should_return_car_when_execute_fetchCar_given_ticket_and_a_standard_parking_boy(){
         //given
         Car car =new Car();
@@ -213,6 +213,89 @@ class ParkingLotTest {
 
         //then
         assertEquals(car,actualCar);
+    }
+
+    @Test //#3
+    void should_return_two_car_when_execute_fetchCar_given_two_ticket_and_a_standard_parking_boy(){
+        //given
+        Car car1 =new Car();
+        Car car2 =new Car();
+        StandardParkingBoy parkingBoy = new StandardParkingBoy(new ParkingLot(10));
+        Ticket ticket1 =parkingBoy.parkCar(car1);
+        Ticket ticket2 =parkingBoy.parkCar(car2);
+
+        //when
+        Car actualCar1 =parkingBoy.fetchCar(ticket1);
+        Car actualCar2 =parkingBoy.fetchCar(ticket2);
+
+        //then
+        assertEquals(car1,actualCar1);
+        assertEquals(car2,actualCar2);
+    }
+
+    @Test //# 4
+    void should_return_error_message_when_execute_parkCar_given_full_parkingLot_and_a_standard_parking_boy() {
+        //given
+        StandardParkingBoy parkingBoy = new StandardParkingBoy(new ParkingLot(1));
+        parkingBoy.parkCar(new Car());
+        Car car = new Car();
+        //when
+        ParkingLotIsFullException parkingLotIsFullException = assertThrows(
+                ParkingLotIsFullException.class, () -> parkingBoy.parkCar(car));
+
+        //then
+        assertEquals("No available position", parkingLotIsFullException.getMessage());
+
+    }
+
+    @Test //#2
+    void should_return_error_message_when_execute_parkCar_given_used_ticket_and_standard_parking_boy(){
+        //given
+        StandardParkingBoy parkingBoy = new StandardParkingBoy(new ParkingLot(10));
+        Ticket ticket = parkingBoy.parkCar(new Car());
+        parkingBoy.fetchCar(ticket);
+
+        //when
+        UnrecognizedTicketException unrecognizedTicketException =assertThrows(
+                UnrecognizedTicketException.class, ()-> parkingBoy.fetchCar(ticket)
+        );
+
+        //then
+        assertEquals("Unrecognized parking ticket",unrecognizedTicketException.getMessage());
+    }
+
+    @Test //#3
+    void should_return_error_message_when_execute_parkCar_given_wrong_ticket_and_standard_parking_boy(){
+        //given
+        ParkingLot parkingLot = new ParkingLot(10);
+        Ticket ticket =new Ticket();
+
+
+        //when
+        UnrecognizedTicketException unrecognizedTicketException =assertThrows(
+                UnrecognizedTicketException.class, ()-> parkingLot.fetchCar(ticket)
+        );
+
+        //then
+        assertEquals("Unrecognized parking ticket",unrecognizedTicketException.getMessage());
+
+    }
+
+    @Test //#4
+    void should_return_error_message_when_execute_parkCar_given_null_ticket_and_standard_parking_boy(){
+        //given
+        ParkingLot parkingLot = new ParkingLot(10);
+        Ticket ticket =null;
+
+
+        //when
+        UnrecognizedTicketException unrecognizedTicketException =assertThrows(
+                UnrecognizedTicketException.class, ()-> parkingLot.fetchCar(ticket)
+        );
+
+        //then
+        assertEquals("Unrecognized parking ticket",unrecognizedTicketException.getMessage());
+
     }
 }
 
