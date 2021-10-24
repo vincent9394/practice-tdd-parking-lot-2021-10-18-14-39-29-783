@@ -15,7 +15,7 @@ public class StandardParkingBoy {
     }
 
 
-    public List<ParkingLot> getParkingLot() {
+    public List<ParkingLot> getParkingLots() {
         return parkingLots;
     }
 

@@ -2,6 +2,8 @@ package com.parkinglot;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ParkingLotTest {
@@ -301,7 +303,20 @@ class ParkingLotTest {
 
 //------------------------------------------------------------------------------------------
     //story 4
+    @Test//1
+    void should_return_ticket_and_first_parkingLot_when_execute_parkCar_given_car_and_two_parkingLot_and_standard_parking_boy(){
+        //given
+        Car car =new Car();
+        StandardParkingBoy parkingBoy = new StandardParkingBoy(Arrays.asList(new ParkingLot(10),new ParkingLot(10)));
 
+
+        //when
+        Ticket actualTicket = parkingBoy.parkCar(car);
+
+        //then
+        assertNotNull(actualTicket);
+        assertTrue(parkingBoy.getParkingLots().get(0).getTicketCarMap().containsKey(actualTicket));
+    }
 }
 
 

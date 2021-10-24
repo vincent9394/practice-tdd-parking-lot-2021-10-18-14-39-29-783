@@ -11,6 +11,10 @@ public class ParkingLot {
         this.capacity = capacity;
     }
 
+    public Map<Ticket, Car> getTicketCarMap() {
+        return ticketCarMap;
+    }
+
     public Ticket parkCar (Car car){
         if (ticketCarMap.containsValue(car) || car ==null){
             return null;
