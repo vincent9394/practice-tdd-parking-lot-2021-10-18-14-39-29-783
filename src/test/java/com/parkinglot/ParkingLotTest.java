@@ -119,7 +119,7 @@ class ParkingLotTest {
 //------------------------------------------------------------------------------------------
     //story 2
     @Test //# 1
-    void should_return_error_message_when_execute_parkCar_given_full_parkingLot() {
+    void should_return_error_message_when_execute_fetchCar_given_full_parkingLot() {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
         parkingLot.parkCar(new Car());
@@ -138,7 +138,7 @@ class ParkingLotTest {
     }
 
     @Test //#2
-    void should_return_error_message_when_execute_parkCar_given_used_ticket(){
+    void should_return_error_message_when_execute_fetchCar_given_used_ticket(){
         //given
         ParkingLot parkingLot = new ParkingLot(10);
         Ticket ticket = parkingLot.parkCar(new Car());
@@ -154,7 +154,7 @@ class ParkingLotTest {
     }
 
     @Test //#3
-    void should_return_error_message_when_execute_parkCar_given_wrong_ticket(){
+    void should_return_error_message_when_execute_fetchCar_given_wrong_ticket(){
         //given
         ParkingLot parkingLot = new ParkingLot(10);
         Ticket ticket =new Ticket();
@@ -171,7 +171,7 @@ class ParkingLotTest {
     }
 
     @Test //#4
-    void should_return_error_message_when_execute_parkCar_given_null_ticket(){
+    void should_return_error_message_when_execute_fetchCar_given_null_ticket(){
         //given
         ParkingLot parkingLot = new ParkingLot(10);
         Ticket ticket =null;
@@ -248,8 +248,8 @@ class ParkingLotTest {
 
     }
 
-    @Test //#2
-    void should_return_error_message_when_execute_parkCar_given_used_ticket_and_standard_parking_boy(){
+    @Test //#5
+    void should_return_error_message_when_execute_fetchCar_given_used_ticket_and_standard_parking_boy(){
         //given
         StandardParkingBoy parkingBoy = new StandardParkingBoy(new ParkingLot(10));
         Ticket ticket = parkingBoy.parkCar(new Car());
