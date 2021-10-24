@@ -28,5 +28,15 @@ public class StandardParkingBoy {
         }
         return null;
     }
+
+    public Car fetchCar(Ticket ticket) {
+
+        for (int i = 0; i < parkingLots.size(); i++) {
+
+            return parkingLots.get(i).fetchCar(ticket);
+
+        }
+        return null;
+    }
 }
 

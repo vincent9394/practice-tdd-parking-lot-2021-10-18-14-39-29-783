@@ -189,7 +189,7 @@ class ParkingLotTest {
 
 //------------------------------------------------------------------------------------------
     //story 3
-    @Test
+    @Test //#1
     void should_return_ticket_when_execute_parkCar_given_car_and_parkingLot_and_standard_parking_boy(){
         //given
         Car car = new Car();
@@ -201,6 +201,19 @@ class ParkingLotTest {
         assertNotNull(actualTicket);
     }
 
+    @Test
+    void should_return_car_when_execute_fetchCar_given_ticket_and_a_standard_parking_boy(){
+        //given
+        Car car =new Car();
+        StandardParkingBoy parkingBoy = new StandardParkingBoy(new ParkingLot(10));
+        Ticket ticket =parkingBoy.parkCar(car);
+
+        //when
+        Car actualCar=parkingBoy.fetchCar(ticket);
+
+        //then
+        assertEquals(car,actualCar);
+    }
 }
 
 
