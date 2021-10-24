@@ -284,13 +284,13 @@ class ParkingLotTest {
     @Test //#7
     void should_return_error_message_when_execute_parkCar_given_null_ticket_and_standard_parking_boy(){
         //given
-        ParkingLot parkingLot = new ParkingLot(10);
+        StandardParkingBoy parkingBoy = new StandardParkingBoy(new ParkingLot(10));
         Ticket ticket =null;
 
 
         //when
         UnrecognizedTicketException unrecognizedTicketException =assertThrows(
-                UnrecognizedTicketException.class, ()-> parkingLot.fetchCar(ticket)
+                UnrecognizedTicketException.class, ()-> parkingBoy.fetchCar(ticket)
         );
 
         //then
