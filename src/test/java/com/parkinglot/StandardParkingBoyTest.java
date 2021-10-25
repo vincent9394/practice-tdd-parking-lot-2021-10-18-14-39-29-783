@@ -188,31 +188,15 @@ public class StandardParkingBoyTest {
         assertEquals(car2, actualCar2);
     }
 
+
+
     @Test
 //4
-    void should_return_error_msg_when_execute_fetch_car_given_an_unrecognized_ticket_two_parkingLots_and_a_standard_parking_boy() {
-        //given
-        StandardParkingBoy parkingBoy = new StandardParkingBoy(Arrays.asList(new ParkingLot(0), new ParkingLot(0)));
-        Car car = new Car();
-
-        //when
-        ParkingLotIsFullException parkingLotIsFullException = assertThrows(
-                ParkingLotIsFullException.class, () -> parkingBoy.parkCar(car));
-
-
-        //then
-        assertEquals("No available position", parkingLotIsFullException.getMessage());
-
-    }
-
-    @Test
-//5
-    void should_return_error_msg_when_execute_parkCar_given_two_full_parkingLots_and_a_standard_parking_boy() {
+    void should_return_error_msg_when_execute_parkCar_given_an_unrecognized_ticket_and_a_standard_parking_boy() {
         //given
         StandardParkingBoy parkingBoy = new StandardParkingBoy(Arrays.asList(new ParkingLot(10), new ParkingLot(10)));
-        Car car = new Car();
-        Ticket ticket = parkingBoy.parkCar(car);
-        parkingBoy.fetchCar(ticket);
+        Ticket ticket = new Ticket();
+
 
         //when
         UnrecognizedTicketException unrecognizedTicketException = assertThrows(
@@ -240,6 +224,24 @@ public class StandardParkingBoyTest {
 
         //then
         assertEquals("Unrecognized parking ticket", unrecognizedTicketException.getMessage());
+
+    }
+
+
+    @Test
+//6
+    void should_return_error_msg_when_execute_fetch_car_given_two_full_parkingLot_two_parkingLots_and_a_standard_parking_boy() {
+        //given
+        StandardParkingBoy parkingBoy = new StandardParkingBoy(Arrays.asList(new ParkingLot(0), new ParkingLot(0)));
+        Car car = new Car();
+
+        //when
+        ParkingLotIsFullException parkingLotIsFullException = assertThrows(
+                ParkingLotIsFullException.class, () -> parkingBoy.parkCar(car));
+
+
+        //then
+        assertEquals("No available position", parkingLotIsFullException.getMessage());
 
     }
 }

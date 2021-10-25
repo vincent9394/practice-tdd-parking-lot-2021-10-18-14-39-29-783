@@ -15,7 +15,7 @@ public class SmartParkingBoy extends StandardParkingBoy {
     @Override
     public Ticket parkCar(Car car){
         ParkingLot availableParkingLot = parkingLots.get(0);
-        for (int i =0; i< parkingLots.size(); i++){
+        for (int i =1; i< parkingLots.size(); i++){
             if (availableParkingLot.getAvailability()<parkingLots.get(i).getAvailability()){
                 availableParkingLot = parkingLots.get(i);
             }
