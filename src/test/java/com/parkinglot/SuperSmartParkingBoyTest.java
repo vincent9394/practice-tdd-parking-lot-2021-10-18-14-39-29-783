@@ -35,9 +35,9 @@ class SuperSmartParkingBoyTest {
         Car car = new Car();
         Car car1 = new Car();
         ParkingLot parkingLot1 = new ParkingLot(10);
-        ParkingLot parkingLot2 = new ParkingLot(10);
+        ParkingLot parkingLot2 = new ParkingLot(100);
         SuperSmartParkingBoy parkingBoy = new SuperSmartParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
-
+        parkingBoy.parkCar(car1);
 //    when
         Ticket actualTicket = parkingBoy.parkCar(car);
 //    then
