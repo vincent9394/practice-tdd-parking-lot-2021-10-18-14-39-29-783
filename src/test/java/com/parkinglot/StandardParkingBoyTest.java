@@ -165,4 +165,23 @@ public class StandardParkingBoyTest {
         assertNotNull(actualTicket);
         assertTrue(parkingBoy.getParkingLots().get(1).getTicketCarMap().containsKey(actualTicket));
     }
+
+    @Test//3
+    void should_return_two_right_car_when_execute_fetch_car_given_two_parked_car_two_ticket_two_parkingLot_and_a_standard_parking_boy(){
+        //given
+        Car car1 =new Car();
+        Car car2 =new Car();
+        ParkingLot parkingLot1 =new ParkingLot(1);
+        ParkingLot parkingLot2 = new ParkingLot(10);
+        StandardParkingBoy parkingBoy = new StandardParkingBoy(Arrays.asList(parkingLot1,parkingLot2));
+        Ticket ticket2 = parkingBoy.parkCar(car2);
+        Ticket ticket1 = parkingBoy.parkCar(car1);
+
+        //when
+        Car actualCar1 = parkingBoy.fetchCar(ticket1);
+        Car actualCar2 = parkingBoy.fetchCar(ticket2);
+        //then
+        assertEquals(car1,actualCar1);
+        assertEquals(car2,actualCar2);
+    }
 }
