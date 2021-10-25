@@ -7,10 +7,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ParkingLot {
-    Map<Ticket,Car> ticketCarMap = new HashMap<>();
+    Map<Ticket, Car> ticketCarMap = new HashMap<>();
     public int capacity;
 
-    public ParkingLot(int capacity){
+    public ParkingLot(int capacity) {
         this.capacity = capacity;
     }
 
@@ -18,12 +18,11 @@ public class ParkingLot {
         return ticketCarMap;
     }
 
-    public Ticket parkCar (Car car){
+    public Ticket parkCar(Car car) {
 
         if (contains(car) || car == null || isFull()) {
             throw new ParkingLotIsFullException();
-        } else
-        {
+        } else {
             Ticket ticket = new Ticket();
             ticketCarMap.put(ticket, car);
             return ticket;
@@ -31,8 +30,8 @@ public class ParkingLot {
 
     }
 
-    public Car fetchCar (Ticket ticket){
-        if (ticketCarMap.containsKey(ticket)){
+    public Car fetchCar(Ticket ticket) {
+        if (ticketCarMap.containsKey(ticket)) {
             Car car = ticketCarMap.get(ticket);
             ticketCarMap.remove(ticket);
             return car;

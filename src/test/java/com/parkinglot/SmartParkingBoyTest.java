@@ -7,22 +7,25 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class StandardParkingBoyTest {
-    //------------------------------------------------------------------------------------------
-    //story 3
+class SmartParkingBoyTest {
+    //story 5
     @Test
     //#1
-    void should_return_ticket_when_execute_parkCar_given_car_and_two_parkingLot_and_standard_parking_boy() {
+    void should_return_ticket_when_execute_parkCar_given_car_and_parkingLot_and_smart_parking_boy() {
         //given
         Car car = new Car();
-        StandardParkingBoy parkingBoy = new StandardParkingBoy(new ParkingLot(10));
+        ParkingLot parkingLot1 =new ParkingLot(10);
+        ParkingLot parkingLot2 = new ParkingLot(10);
+        SmartParkingBoy parkingBoy = new SmartParkingBoy(Arrays.asList(parkingLot1,parkingLot2));
 
 //    when
         Ticket actualTicket = parkingBoy.parkCar(car);
 //    then
+        assertTrue(parkingLot1.contains(car));
+        assertFalse(parkingLot2.contains(car));
         assertNotNull(actualTicket);
+
     }
 
     @Test
@@ -30,7 +33,7 @@ public class StandardParkingBoyTest {
     void should_return_car_when_execute_fetchCar_given_ticket_and_a_standard_parking_boy() {
         //given
         Car car = new Car();
-        StandardParkingBoy parkingBoy = new StandardParkingBoy(new ParkingLot(10));
+        SmartParkingBoy parkingBoy = new SmartParkingBoy(new ParkingLot(10));
         Ticket ticket = parkingBoy.parkCar(car);
 
         //when
@@ -46,7 +49,7 @@ public class StandardParkingBoyTest {
         //given
         Car car1 = new Car();
         Car car2 = new Car();
-        StandardParkingBoy parkingBoy = new StandardParkingBoy(new ParkingLot(10));
+        SmartParkingBoy parkingBoy = new SmartParkingBoy(new ParkingLot(10));
         Ticket ticket1 = parkingBoy.parkCar(car1);
         Ticket ticket2 = parkingBoy.parkCar(car2);
 
@@ -63,7 +66,7 @@ public class StandardParkingBoyTest {
         //# 4
     void should_return_error_message_when_execute_parkCar_given_full_parkingLot_and_a_standard_parking_boy() {
         //given
-        StandardParkingBoy parkingBoy = new StandardParkingBoy(new ParkingLot(1));
+        SmartParkingBoy parkingBoy = new SmartParkingBoy(new ParkingLot(1));
         parkingBoy.parkCar(new Car());
         Car car = new Car();
         //when
@@ -79,7 +82,7 @@ public class StandardParkingBoyTest {
         //#5
     void should_return_error_message_when_execute_fetchCar_given_used_ticket_and_standard_parking_boy() {
         //given
-        StandardParkingBoy parkingBoy = new StandardParkingBoy(new ParkingLot(10));
+        SmartParkingBoy parkingBoy = new SmartParkingBoy(new ParkingLot(10));
         Ticket ticket = parkingBoy.parkCar(new Car());
         parkingBoy.fetchCar(ticket);
 
@@ -96,7 +99,7 @@ public class StandardParkingBoyTest {
         //#6
     void should_return_error_message_when_execute_parkCar_given_wrong_ticket_and_standard_parking_boy() {
         //given
-        StandardParkingBoy parkingBoy = new StandardParkingBoy(new ParkingLot(10));
+        SmartParkingBoy parkingBoy = new SmartParkingBoy(new ParkingLot(10));
         Ticket ticket = new Ticket();
 
 
@@ -114,7 +117,7 @@ public class StandardParkingBoyTest {
         //#7
     void should_return_error_message_when_execute_parkCar_given_null_ticket_and_standard_parking_boy() {
         //given
-        StandardParkingBoy parkingBoy = new StandardParkingBoy(new ParkingLot(10));
+        SmartParkingBoy parkingBoy = new SmartParkingBoy(new ParkingLot(10));
         Ticket ticket = null;
 
 
@@ -137,7 +140,7 @@ public class StandardParkingBoyTest {
         //given
         Car car = new Car();
 //        List<ParkingLot> parkingLots
-        StandardParkingBoy parkingBoy = new StandardParkingBoy(Arrays.asList(new ParkingLot(10), new ParkingLot(10)));
+        SmartParkingBoy parkingBoy = new SmartParkingBoy(Arrays.asList(new ParkingLot(10), new ParkingLot(10)));
 
 
         //when
@@ -156,7 +159,7 @@ public class StandardParkingBoyTest {
         Car car = new Car();
         ParkingLot parkingLot1 = new ParkingLot(1);
         ParkingLot parkingLot2 = new ParkingLot(10);
-        StandardParkingBoy parkingBoy = new StandardParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        SmartParkingBoy parkingBoy = new SmartParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
         parkingBoy.parkCar(car);
 
 
@@ -176,7 +179,7 @@ public class StandardParkingBoyTest {
         Car car2 = new Car();
         ParkingLot parkingLot1 = new ParkingLot(1);
         ParkingLot parkingLot2 = new ParkingLot(10);
-        StandardParkingBoy parkingBoy = new StandardParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
+        SmartParkingBoy parkingBoy = new SmartParkingBoy(Arrays.asList(parkingLot1, parkingLot2));
         Ticket ticket2 = parkingBoy.parkCar(car2);
         Ticket ticket1 = parkingBoy.parkCar(car1);
 
@@ -192,7 +195,7 @@ public class StandardParkingBoyTest {
 //4
     void should_return_error_msg_when_execute_fetch_car_given_an_unrecognized_ticket_two_parkingLots_and_a_standard_parking_boy() {
         //given
-        StandardParkingBoy parkingBoy = new StandardParkingBoy(Arrays.asList(new ParkingLot(0), new ParkingLot(0)));
+        SmartParkingBoy parkingBoy = new SmartParkingBoy(Arrays.asList(new ParkingLot(0), new ParkingLot(0)));
         Car car = new Car();
 
         //when
@@ -209,7 +212,7 @@ public class StandardParkingBoyTest {
 //5
     void should_return_error_msg_when_execute_parkCar_given_two_full_parkingLots_and_a_standard_parking_boy() {
         //given
-        StandardParkingBoy parkingBoy = new StandardParkingBoy(Arrays.asList(new ParkingLot(10), new ParkingLot(10)));
+        SmartParkingBoy parkingBoy = new SmartParkingBoy(Arrays.asList(new ParkingLot(10), new ParkingLot(10)));
         Car car = new Car();
         Ticket ticket = parkingBoy.parkCar(car);
         parkingBoy.fetchCar(ticket);
@@ -228,7 +231,7 @@ public class StandardParkingBoyTest {
 //5
     void should_return_error_msg_when_execute_fetch_car_given_an_used_ticket_two_parkingLots_and_a_standard_parking_boy() {
         //given
-        StandardParkingBoy parkingBoy = new StandardParkingBoy(Arrays.asList(new ParkingLot(10), new ParkingLot(10)));
+        SmartParkingBoy parkingBoy = new SmartParkingBoy(Arrays.asList(new ParkingLot(10), new ParkingLot(10)));
         Car car = new Car();
         Ticket ticket = parkingBoy.parkCar(car);
         parkingBoy.fetchCar(ticket);
