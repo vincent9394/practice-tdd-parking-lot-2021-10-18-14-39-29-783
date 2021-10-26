@@ -21,35 +21,35 @@ class ParkingLotTest {
         assertNotNull(actualTicket);
     }
 
-    @Test
+//    @Test
         //#2
-    void should_return_null_when_execute_parkCar_given_null_car() {
-        //given
-        Car car = null;
-        ParkingLot parkingLot = new ParkingLot(1);
+//    void should_return_null_when_execute_parkCar_given_null_car() {
+//        //given
+//        Car car = null;
+//        ParkingLot parkingLot = new ParkingLot(1);
+//
+//        //when
+//        Ticket actualTicket = parkingLot.parkCar(null);
+//
+//        //then
+//        assertNull(actualTicket);
+//    }
 
-        //when
-        Ticket actualTicket = parkingLot.parkCar(null);
-
-        //then
-        assertNull(actualTicket);
-    }
-
-    @Test
-        //#3
-    void should_return_null_when_execute_partCar_when_given_parked_car() {
-
-        //given
-        ParkingLot parkingLot = new ParkingLot(1);
-        Car car = new Car();
-        parkingLot.parkCar(car);
-
-        //when
-        Ticket ticket = parkingLot.parkCar(car);
-
-        //then
-        assertNull(ticket);
-    }
+//    @Test
+//        //#3
+//    void should_return_null_when_execute_partCar_when_given_parked_car() {
+//
+//        //given
+//        ParkingLot parkingLot = new ParkingLot(1);
+//        Car car = new Car();
+//        parkingLot.parkCar(car);
+//
+//        //when
+//        Ticket ticket = parkingLot.parkCar(car);
+//
+//        //then
+//        assertNull(ticket);
+//    }
 //    @Test //#4
 //    void should_return_null_when_execute_parkCar_when_givem_full_parkingLot(){
 //        //given
@@ -181,7 +181,7 @@ class ParkingLotTest {
 
     @Test
         //#4
-    void should_return_error_message_when_execute_fetchCar_given_null_ticket() {
+    void should_return_error_message_when_execute_fetch_car_given_null_ticket() {
         //given
         ParkingLot parkingLot = new ParkingLot(10);
         Ticket ticket = null;

@@ -24,9 +24,9 @@ public class StandardParkingBoy {
 
     public Ticket parkCar(Car car) {
 
-        for (int i = 0; i < parkingLots.size(); i++) {
-            if (!parkingLots.get(i).isFull())
-                return parkingLots.get(i).parkCar(car);
+        for (ParkingLot parkingLot : parkingLots) {
+            if (!parkingLot.isFull())
+                return parkingLot.parkCar(car);
 
         }
         throw new ParkingLotIsFullException();
