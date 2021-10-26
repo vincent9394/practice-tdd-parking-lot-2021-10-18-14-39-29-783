@@ -11,8 +11,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ParkingLotManagerTest {
     @Test
-    //#AC1
-    void should_return_assigned_parking_boy_when_execute_add_parking_boy_given_a_parking_boy(){
+        //#AC1
+    void should_return_assigned_parking_boy_when_execute_add_parking_boy_given_a_parking_boy() {
 
 
 //                (parkingLotManager.assignedParkingBoys.get(0));
@@ -28,16 +28,16 @@ class ParkingLotManagerTest {
         //then
         assertNotNull(assignedParkingBoys);
     }
-    @Test //AC1
-    void should_return_assigned_parkingboy_to_parkCar_when_execute_assignParkTask_given_a_parkingboy_and_a_car_and_a_parkingLot(){
+
+    @Test
+        //AC1
+    void should_return_assigned_parkingboy_to_parkCar_when_execute_assignParkTask_given_a_parkingboy_and_a_car_and_a_parkingLot() {
         //given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot(10);
         StandardParkingBoy parkingBoy = new SmartParkingBoy(parkingLot);
         ParkingLotManager parkingLotManager = new ParkingLotManager(parkingLot);
         parkingLotManager.addParkingBoy(parkingBoy);
-
-
 
 
         //when
@@ -47,8 +47,9 @@ class ParkingLotManagerTest {
         assertNotNull(ticket);
     }
 
-    @Test //AC1
-    void should_return_assigned_parkingboy_to_fetchCar_when_execute_assignParkTask_given_a_parkingboy_and_a_car_and_a_parkingLot(){
+    @Test
+        //AC1
+    void should_return_assigned_parkingboy_to_fetchCar_when_execute_assignParkTask_given_a_parkingboy_and_a_car_and_a_parkingLot() {
         //given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot(10);
@@ -58,16 +59,16 @@ class ParkingLotManagerTest {
         Ticket ticket = parkingLotManager.assignParkTask(car, parkingBoy);
 
 
-
         //when
-        Car actualCar = parkingLotManager.assignFetchTask(ticket,parkingBoy);
+        Car actualCar = parkingLotManager.assignFetchTask(ticket, parkingBoy);
 
         //then
         assertNotNull(ticket);
     }
 
-    @Test//AC2
-    void should_return_ticket_when_execute_assignParkTask_given_a_parking_manager_and_a_car(){
+    @Test
+//AC2
+    void should_return_ticket_when_execute_assignParkTask_given_a_parking_manager_and_a_car() {
         //given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot(10);
@@ -80,8 +81,9 @@ class ParkingLotManagerTest {
         assertNotNull(ticket);
     }
 
-    @Test//AC2
-    void should_return_car_when_execute_assignParkTask_given_a_parking_manager_and_a_ticket(){
+    @Test
+//AC2
+    void should_return_car_when_execute_assignParkTask_given_a_parking_manager_and_a_ticket() {
         //given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot(10);
@@ -91,13 +93,14 @@ class ParkingLotManagerTest {
         Ticket ticket = parkingLotManager.assignParkTask(car, parkingLotManager);
 
         //when
-        Car actualCar = parkingLotManager.assignFetchTask(ticket,parkingLotManager);
+        Car actualCar = parkingLotManager.assignFetchTask(ticket, parkingLotManager);
         //then
         assertNotNull(ticket);
     }
 
-    @Test //AC3
-    void should_error_msg_when_execute_assignParkTask_given_a_parking_boy_and_a_car_and_a_full_parkingLot(){
+    @Test
+        //AC3
+    void should_error_msg_when_execute_assignParkTask_given_a_parking_boy_and_a_car_and_a_full_parkingLot() {
         //given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot(1);
@@ -109,14 +112,15 @@ class ParkingLotManagerTest {
 
         //when
         ParkingLotIsFullException parkingLotIsFullException = assertThrows(
-                ParkingLotIsFullException.class, () -> parkingLotManager.assignParkTask(car,parkingBoy));
+                ParkingLotIsFullException.class, () -> parkingLotManager.assignParkTask(car, parkingBoy));
 
 
         //then
         assertEquals("No available position", parkingLotIsFullException.getMessage());
     }
 
-    @Test //AC3
+    @Test
+        //AC3
     void should_error_msg_when_execute_assignFetchTask_given_a_parking_boy_and_a_parkingLot_and_a_unrecognized_ticket() {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
@@ -128,7 +132,7 @@ class ParkingLotManagerTest {
 
         //when
         UnrecognizedTicketException unrecognizedTicketException = assertThrows(
-                UnrecognizedTicketException.class, () -> parkingLotManager.assignFetchTask(ticket,parkingBoy)
+                UnrecognizedTicketException.class, () -> parkingLotManager.assignFetchTask(ticket, parkingBoy)
         );
 
         //then
@@ -137,7 +141,8 @@ class ParkingLotManagerTest {
 
     }
 
-    @Test //AC3
+    @Test
+        //AC3
     void should_error_msg_when_execute_assignFetchTask_given_a_parking_boy_and_a_parkingLot_and_a_null_ticket() {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
@@ -149,7 +154,7 @@ class ParkingLotManagerTest {
 
         //when
         UnrecognizedTicketException unrecognizedTicketException = assertThrows(
-                UnrecognizedTicketException.class, () -> parkingLotManager.assignFetchTask(ticket,parkingBoy)
+                UnrecognizedTicketException.class, () -> parkingLotManager.assignFetchTask(ticket, parkingBoy)
         );
 
         //then
@@ -158,7 +163,8 @@ class ParkingLotManagerTest {
 
     }
 
-    @Test //AC3
+    @Test
+        //AC3
     void should_error_msg_when_execute_assignFetchTask_given_a_parking_boy_and_a_parkingLot_and_a_used_ticket() {
         //given
         Car car = new Car();
@@ -167,11 +173,11 @@ class ParkingLotManagerTest {
         ParkingLotManager parkingLotManager = new ParkingLotManager(parkingLot);
         parkingLotManager.addParkingBoy(parkingBoy);
         Ticket ticket = parkingLotManager.assignParkTask(car, parkingBoy);
-        parkingLotManager.assignFetchTask(ticket,parkingBoy);
+        parkingLotManager.assignFetchTask(ticket, parkingBoy);
 
         //when
         UnrecognizedTicketException unrecognizedTicketException = assertThrows(
-                UnrecognizedTicketException.class, () -> parkingLotManager.assignFetchTask(ticket,parkingBoy)
+                UnrecognizedTicketException.class, () -> parkingLotManager.assignFetchTask(ticket, parkingBoy)
         );
 
         //then

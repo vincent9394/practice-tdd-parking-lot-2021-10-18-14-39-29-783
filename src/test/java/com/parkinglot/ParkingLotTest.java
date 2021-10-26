@@ -22,7 +22,7 @@ class ParkingLotTest {
     }
 
 //    @Test
-        //#2
+    //#2
 //    void should_return_null_when_execute_parkCar_given_null_car() {
 //        //given
 //        Car car = null;
