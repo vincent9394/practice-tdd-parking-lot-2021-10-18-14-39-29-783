@@ -1,6 +1,7 @@
 package com.parkinglot;
 
 import com.parkinglot.exception.ParkingLotIsFullException;
+import com.parkinglot.exception.UnrecognizedTicketException;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -96,7 +97,7 @@ class ParkingLotManagerTest {
     }
 
     @Test //AC3
-    void should_error_msg_when_execute_assignParkTask_given_a_parkingboy_and_a_car_and_a_full_parkingLot(){
+    void should_error_msg_when_execute_assignParkTask_given_a_parking_boy_and_a_car_and_a_full_parkingLot(){
         //given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot(1);
@@ -115,6 +116,46 @@ class ParkingLotManagerTest {
         assertEquals("No available position", parkingLotIsFullException.getMessage());
     }
 
+    @Test //AC3
+    void should_error_msg_when_execute_assignFetchTask_given_a_parking_boy_and_a_parkingLot_and_a_unrecognized_ticket() {
+        //given
+        ParkingLot parkingLot = new ParkingLot(1);
+        StandardParkingBoy parkingBoy = new SmartParkingBoy(parkingLot);
+        ParkingLotManager parkingLotManager = new ParkingLotManager(parkingLot);
+        parkingLotManager.addParkingBoy(parkingBoy);
+        Ticket ticket = new Ticket();
 
+
+        //when
+        UnrecognizedTicketException unrecognizedTicketException = assertThrows(
+                UnrecognizedTicketException.class, () -> parkingLotManager.assignFetchTask(ticket,parkingBoy)
+        );
+
+        //then
+        assertEquals("Unrecognized parking ticket", unrecognizedTicketException.getMessage());
+
+
+    }
+
+    @Test //AC3
+    void should_error_msg_when_execute_assignFetchTask_given_a_parking_boy_and_a_parkingLot_and_a_null_ticket() {
+        //given
+        ParkingLot parkingLot = new ParkingLot(1);
+        StandardParkingBoy parkingBoy = new SmartParkingBoy(parkingLot);
+        ParkingLotManager parkingLotManager = new ParkingLotManager(parkingLot);
+        parkingLotManager.addParkingBoy(parkingBoy);
+        Ticket ticket = new Ticket();
+
+
+        //when
+        UnrecognizedTicketException unrecognizedTicketException = assertThrows(
+                UnrecognizedTicketException.class, () -> parkingLotManager.assignFetchTask(ticket,parkingBoy)
+        );
+
+        //then
+        assertEquals("Unrecognized parking ticket", unrecognizedTicketException.getMessage());
+
+
+    }
 
 }
