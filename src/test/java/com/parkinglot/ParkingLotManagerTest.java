@@ -144,8 +144,30 @@ class ParkingLotManagerTest {
         StandardParkingBoy parkingBoy = new SmartParkingBoy(parkingLot);
         ParkingLotManager parkingLotManager = new ParkingLotManager(parkingLot);
         parkingLotManager.addParkingBoy(parkingBoy);
-        Ticket ticket = new Ticket();
+        Ticket ticket = null;
 
+
+        //when
+        UnrecognizedTicketException unrecognizedTicketException = assertThrows(
+                UnrecognizedTicketException.class, () -> parkingLotManager.assignFetchTask(ticket,parkingBoy)
+        );
+
+        //then
+        assertEquals("Unrecognized parking ticket", unrecognizedTicketException.getMessage());
+
+
+    }
+
+    @Test //AC3
+    void should_error_msg_when_execute_assignFetchTask_given_a_parking_boy_and_a_parkingLot_and_a_used_ticket() {
+        //given
+        Car car = new Car();
+        ParkingLot parkingLot = new ParkingLot(1);
+        StandardParkingBoy parkingBoy = new SmartParkingBoy(parkingLot);
+        ParkingLotManager parkingLotManager = new ParkingLotManager(parkingLot);
+        parkingLotManager.addParkingBoy(parkingBoy);
+        Ticket ticket = parkingLotManager.assignParkTask(car, parkingBoy);
+        parkingLotManager.assignFetchTask(ticket,parkingBoy);
 
         //when
         UnrecognizedTicketException unrecognizedTicketException = assertThrows(
